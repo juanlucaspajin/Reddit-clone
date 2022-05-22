@@ -14,6 +14,21 @@ type Post {
   subreddit_id: ID
   title: String
   username: String
+  votes: [Vote]
+    @materializer(
+      query: "getVotesByPostId",
+      arguments: [{ name: "postId", field: "id" }]
+    )
+  comments: [Comment]
+    @materializer(
+      query: "getCommentByPost_id",
+      arguments:[{ name: "post_id", field: "id" }]
+    )
+  subreddit: [Subreddit]
+    @materializer(
+      query: "getSubredditListById",
+      arguments: [{ name: "id", field: "subreddit_id" }]
+    )
 }
 
 type Subreddit {
@@ -40,6 +55,25 @@ type Query {
   """
   This query is an example of how to simply paginate your responses.
   """
+  getSubredditListById(id: ID!): [Subreddit]
+    @dbquery(
+      type: "postgresql"
+      query: """
+      select * from "subreddit" where "id" = $1
+      """
+      configuration: "postgresql_config"
+    )
+
+  getVotesByPostId(postId: ID!): [Vote]
+    @dbquery(
+      type: "postgresql"
+      query: """
+      select * from "vote" where "post_id" = $1
+      order by "created_at" desc
+      """
+      configuration: "postgresql_config"
+    )
+
   getPaginatedCommentList(first: Int!, after: Int!): [Comment]
     @dbquery(
       type: "postgresql"
@@ -75,7 +109,9 @@ type Query {
   getPostList: [Post]
     @dbquery(
       type: "postgresql"
-      table: "post"
+      query: """
+      select * from "post" order by "created_at" desc
+      """
       configuration: "postgresql_config"
     )
   getSubredditList: [Subreddit]

@@ -17,3 +17,4 @@ This is a clone of [Reddit website](https://www.reddit.com/).
 
 ## Scrennshots
 ![First](https://raw.githubusercontent.com/juanlucaspajin/Reddit-clone/main/screenshots/scrsht_1.png)
+![Second](https://raw.githubusercontent.com/juanlucaspajin/Reddit-clone/main/screenshots//scrsht_2.png)
