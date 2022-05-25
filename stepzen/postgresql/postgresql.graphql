@@ -119,7 +119,7 @@ type Query {
       type: "postgresql"
       query: """
       select * from "post"
-      where "id" = $1
+      where "post"."id" = $1
       """
       configuration: "postgresql_config"
     )

@@ -11,7 +11,7 @@ import Avatar from '../../components/Avatar'
 import TimeAgo from 'react-timeago'
 
 type FormData = {
-  comment: string
+  commentText: string
 }
 
 function PostPage() {
@@ -21,7 +21,7 @@ function PostPage() {
     refetchQueries: [GET_POSTS_BY_POST_ID, 'getPostListByPostId']
   })
 
-  const { loading, error, data } = useQuery(GET_POSTS_BY_POST_ID, {
+  const { data } = useQuery(GET_POSTS_BY_POST_ID, {
     variables: {
       post_id: router.query.postId
     }
@@ -42,17 +42,18 @@ function PostPage() {
       variables: {
         post_id: router.query.postId,
         username: session?.user?.name,
-        text: data.comment
+        text: data.commentText
       }
     })
 
-    setValue('comment', '')
+    setValue('commentText', '')
 
     toast.success('Comment succesfully posted', {
       id: notification
     })
   }
   console.log(data);
+
 
   return (
     <div className='mx-auto my-7 max-w-5xl'>
@@ -65,7 +66,7 @@ function PostPage() {
 
         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col max-w-5xl space-y-2'>
           <textarea
-            {...register('comment')}
+            {...register('commentText')}
             disabled={!session}
             className='h-24 rounded-md border border-gray-200 p-2 pl-4 outline-none disabled:bg-gray-50'
             placeholder={session ? 'What are your thoughts? ' : 'Please sign in to comment'}
@@ -83,11 +84,12 @@ function PostPage() {
 
       <div className='-my-5 rounded-b-md border border-t-0 border-gray-300 bg-white py-5 px-10'>
         <hr className='py-2'/>
+
         {post?.comments.map(comment => (
           <div key={comment.id} className="relative flex items-center space-x-2 space-y-5">
             <hr className='absolute top-10 h-16 left-7 z-0 border'/>
             <div className='z-50'>
-              <Avatar seed={comment.username} />
+              <Avatar seed={`${comment.username}`} />
             </div>
 
             <div className='flex flex-col'>
