@@ -43,7 +43,9 @@ export const GET_POSTS_BY_POST_ID = gql`
       comments {
         id
         text
-        username
+        username,
+        created_at,
+        post_id
       }
       votes {
         id
