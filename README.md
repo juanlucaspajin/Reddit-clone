@@ -21,3 +21,4 @@ This is a clone of [Reddit website](https://www.reddit.com/).
 ![Third](https://raw.githubusercontent.com/juanlucaspajin/Reddit-clone/main/screenshots/srcsht_3.png)
 ![Fourth](https://raw.githubusercontent.com/juanlucaspajin/Reddit-clone/main/screenshots/scrsht_4.png)
 ![Fifth](https://raw.githubusercontent.com/juanlucaspajin/Reddit-clone/main/screenshots/scrsht_5.png)
+![Sixth](https://raw.githubusercontent.com/juanlucaspajin/Reddit-clone/main/screenshots/scrsht_6.png)

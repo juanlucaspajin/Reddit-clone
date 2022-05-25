@@ -114,3 +114,12 @@ export const GET_ALL_VOTES_BY_POST_ID = gql`
   }
 `
 
+export const GET_SUBREDDITS_WITH_LIMIT = gql`
+  query MyMutation($limit: Int!) {
+    getSubredditListLimit(limit: $limit) {
+      created_at,
+      id,
+      topic
+    }
+  }
+`

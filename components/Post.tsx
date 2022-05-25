@@ -30,7 +30,6 @@ function Post({post}: Props) {
       post_id: post?.id
     }
   })
-  console.log('GET_ALL_VOTES_BY_POST_ID', data);
 
   const [addVote] = useMutation(ADD_VOTE, {
     refetchQueries: [GET_ALL_VOTES_BY_POST_ID, 'getVotesByPostId']
@@ -50,7 +49,6 @@ function Post({post}: Props) {
     }
     if(vote && isUpvote) return;
     if (vote === false && isUpvote) return;
-    console.log('voting...');
 
     const { data: {insertVote: newVote} } = await addVote({
       variables: {
